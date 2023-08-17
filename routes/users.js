@@ -10,6 +10,14 @@ const router  = express.Router();
 
 router.get('/', (req, res) => {
   res.render('users');
-}); 
+});
+
+
+app.get("/", (req, res) => {
+  const templateVars = {
+    user: users[req.session.user_id]
+  };
+  res.render("polls", templateVars);
+});
 
 module.exports = router;
