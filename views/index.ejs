@@ -8,17 +8,46 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
 
+  <!-- APP CSS-->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/layout.css"/>
+  <link rel="stylesheet" href="/styles/nav.css"/>
+  <link rel="stylesheet" href="/styles/form.css"
+
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
 
+<!-- nav bar here -->
+<% include ./partials/_header %>
 <body>
-  <h1>Have fun! 🥔</h1>
+
+  <h1 class="header">Start creating your own poll</h1>
+  <h2 id="below-header">Fill out the form below</h2>
+
+  <!-- the form entries here -->
+  <main>
+    <form Content-Type="application/x-www-form-urlencoded" method="post">
+      <h2>Email address</h2>
+      <textarea name="email" id="email-text"></textarea>
+
+      <h2>Name</h2>
+      <textarea name="username" id="name-text"></textarea>
+
+      <h2>Question Title</h2>
+      <textarea name="question-title" id="question-title"></textarea>
+
+      <div id="buttons">
+        <button id="reset-btn" class="btn" type="reset">Reset</button>
+        <button id="submit-btn" class="btn" type="submit">Submit</button>
+      </div>
+    </form>
+
+  </main>
+
 </body>
 
 </html>
