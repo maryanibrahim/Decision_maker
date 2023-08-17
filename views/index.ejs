@@ -19,8 +19,10 @@
 
 <body>
   <h1>Enter your email to create a poll</h1>
-  <textarea>email</textarea>
-  <button> submit</button>
+  <form method="POST" action="/submit">
+    <input type="email" name="email" placeholder="email" >
+    <button type="submit">Submit</button>
+  </form>
 </body>
 
 </html>
