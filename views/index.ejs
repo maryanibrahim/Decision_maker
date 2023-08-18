@@ -24,9 +24,31 @@
 <!-- nav bar here -->
 <% include ./partials/_header %>
 <body>
-  <h1>Enter your email to create a poll</h1>
-  <textarea>email</textarea>
-  <button> submit</button>
+
+
+  <h1 class="header">Start creating your own poll</h1>
+  <h2 id="below-header">Fill out the form below</h2>
+
+  <!-- the form entries here -->
+  <main>
+    <form Content-Type="/" method="post">
+      <h2>Email address</h2>
+      <input type="email" name="email" id="email-text"></input>
+
+      <h2>Name</h2>
+      <input name="username" id="name-text"></input>
+
+      <h2>Question Title</h2>
+      <input name="question-title" id="question-title"></input>
+
+      <div id="buttons">
+        <button id="reset-btn" class="btn" type="reset">Reset</button>
+        <button id="submit-btn" class="btn" type="submit">Submit</button>
+      </div>
+    </form>
+
+  </main>
+
 </body>
 
 </html>
