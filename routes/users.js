@@ -23,12 +23,16 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const newUser = {
     email:req.body.email,
-    name:req.body.email,
+    name:req.body.name,
     question_title:req.body.question_title
   }
   console.log("email:" + newUser.email)
-  if
-})
+  if (newUser.email === "" || newUser.name === "" || newUser.question_title === "") {
+    return res.status(400).send("Please fill in all the fileds");
+  } else {
+    res.redirect("/polls");
+  }
+});
 
 
 
