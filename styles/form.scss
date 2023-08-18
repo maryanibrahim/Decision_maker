@@ -1,0 +1,17 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  resize: none;
+  width: 300%;
+}
+
+.btn {
+  background-color: #022187;
+  color: white;
+  border: none;
+  padding: 0.5em;
+  margin-top: 1em;
+}

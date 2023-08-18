@@ -1,6 +1,27 @@
 // See: https://sass-lang.com/
 
-body,
 html {
-  margin: 0;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.header {
+  align-self: center;
+  margin-top: 5em;
+}
+
+#below-header {
+  align-self: center;
+}
+
+main {
+  margin-left: 5em;
 }
