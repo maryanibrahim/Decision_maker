@@ -9,19 +9,20 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 
-router.get('/', (req, res) => {
-  const query = `SELECT * FROM widgets`;
-  console.log(query);
-  db.query(query)
-    .then(data => {
-      const widgets = data.rows;
-      res.json({ widgets });
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
+router.get('/', async (req, res) => {
+  try {
+    // SQL query to fetch all polls from the database
+    const query = `SELECT * FROM polls`;
+    const { rows } = await db.query(query);
+
+    // Send the retrieved poll data as a JSON response
+    res.json(rows);
+  } catch (error) {
+    console.error('Error fetching polls:', error);
+    res.status(500).json({ error: 'An error occurred while fetching polls.' });
+  }
 });
+
+module.exports = router;
 
 module.exports = router;
