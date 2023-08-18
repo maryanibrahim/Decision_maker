@@ -13,5 +13,29 @@ router.get('/', (req, res) => {
 });
 
 
+router.get("/", (req, res) => {
+  const templateVars = {
+    user: users[req.session.user_id]
+  };
+  res.render("users", templateVars);
+});
+
+router.post("/", (req, res) => {
+  const newUser = {
+    email:req.body.email,
+    name:req.body.email,
+    question_title:req.body.question_title
+  }
+  console.log("email:" + newUser.email)
+  if
+})
+
+
+
+
+
+
+
+
 
 module.exports = router;
