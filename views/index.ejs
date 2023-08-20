@@ -30,7 +30,7 @@
 
   <!-- the form entries here -->
   <main>
-    <form Content-Type="/" method="post">
+    <form action="/users" method="post">
       <h2>Email address</h2>
       <input type="email" name="email" id="email-text"></input>
 
@@ -39,6 +39,25 @@
 
       <h2>Question Title</h2>
       <input name="question-title" id="question-title"></input>
+
+      <!-- This will hold the questions -->
+      <section id="questions-container">
+
+        <!-- This is the layout for the questions -->
+        <h3>Option 1</h3> <!-- the number next to option will have to be changed depending on which one it is-->
+        <div class="individual-question">
+          <h4>Title</h4>
+          <input name="option1" class="option"> <!-- name will also have to be changed -->
+          <h4>Description (optional)</h4>
+          <input name="option1_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
+        </div>
+
+        <!-- These buttons are to add or remove an option -->
+        <div id="button-container">
+          <buttion id="minus-btn" class="btn" type="button">-</buttion>
+          <buttion id="plus-btn" class="btn" type="button">+</buttion>
+        </div>
+      </section>
 
       <div id="buttons">
         <button id="reset-btn" class="btn" type="reset">Reset</button>
