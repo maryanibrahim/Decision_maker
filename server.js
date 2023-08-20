@@ -45,8 +45,12 @@ app.use('/polls', pollsRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('voter');
+  res.render('index');
 });
+
+app.get('/votes', (req, res) => {
+  res.render('voter');
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
