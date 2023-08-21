@@ -87,11 +87,5 @@ router.get("/polls/:id", (req, res) => {
 
 
 
-app.get("/", (req, res) => {
-  const templateVars = {
-    user: users[req.session.user_id]
-  };
-  res.render("polls", templateVars);
-});
 
 module.exports = router;
