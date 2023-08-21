@@ -6,16 +6,6 @@ const getUsers = () => {
     .then(data => data.rows);
 };
 
-// Create a new poll
-const createPoll = (email, admin_link, submission_link) => {
-  return db.query(`
-    INSERT INTO polls (email, admin_link, submission_link)
-    VALUES ($1, $2, $3)
-    RETURNING *;
-  `, [email, admin_link, submission_link])
-    .then(data => data.rows[0]);
-};
-
 // Add choices for a poll
 const addChoiceToPoll = (poll_id, title, description) => {
   return db.query(`
@@ -38,7 +28,6 @@ const submitVote = (choice_id, rank) => {
 
 module.exports = {
   getUsers,
-  createPoll,
   addChoiceToPoll,
   submitVote
 };

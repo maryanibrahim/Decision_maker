@@ -9,7 +9,7 @@ const Poll = {
       //query to insert into polls table
       const query = `
         INSERT INTO polls (user_id, title, admin_link, submission_link)
-        VALUES ($1, $2, $3, $4))
+        VALUES ($1, $2, $3, $4)
         RETURNING *;
       `;
       // values to be inserted into the query
