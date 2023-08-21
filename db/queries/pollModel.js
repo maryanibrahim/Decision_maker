@@ -1,6 +1,6 @@
 // pollModel.js
 
-const db = require('..connection/');
+const db = require('../connection');
 
 const Poll = {
   // the create method is used to create a new poll
