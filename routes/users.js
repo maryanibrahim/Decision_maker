@@ -75,17 +75,3 @@ router.get("/polls/:id", (req, res) => {
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = router;
