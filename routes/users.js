@@ -42,9 +42,20 @@ router.post("/", (req, res) => {
 
     // Create an entry in the Database using promises
     // need ask maryan to add name parameter
+
     createPoll(newUser.email, newUser.name, newAdminID, newSubmissionID);
 
     res.redirect(`/polls/${newAdminID}`);
+
+    Poll.create(newUser.email, newUser.name, newAdminID, newSubmissionID)
+    .then((createdPoll) => {
+      res.redirect(`/polls/${createdPoll.admin_id}`);
+    })
+    .catch((error) => {
+      console.error('Error creating poll:', error);
+      res.status(500).send("An error occurred while creating the poll.");
+    })
+
   }
 });
 
