@@ -3,7 +3,7 @@ const router  = express.Router();
 const db = require('../db/connection');
 const Poll = require('../db/queries/pollModel')
 
-// VIKA ADJUSTMENT
+
 router.get("/polls/:id", (req, res) => {
   const pageID = req.params.id;
 

@@ -4,7 +4,7 @@ const db = require('../connection');
 
 const Poll = {
   // the create method is used to create a new poll
-  create: async (title) => {
+  create: async (user_id, title, admin_link, submission_link) => {
     try {
       //query to insert into polls table
       const query = `
@@ -16,7 +16,10 @@ const Poll = {
       const values = [user_id, title, admin_link, submission_link];
 
       const { rows } = await db.query(query, values);
-      return rows[0]; //Returning the newly created poll object
+      return {
+        ...rows[0], //Returning the newly created poll object
+        newAdminID: admin_link //Adds the newAdminID property
+      };
     } catch (error) {
       throw error;
     }

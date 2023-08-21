@@ -8,6 +8,7 @@
 const express = require('express');
 const db = require('../db/queries/users.js');
 const router  = express.Router();
+const Poll = require('../db/queries/pollModel');
 
 function generateRandomString() {
   // found the solution on stackOverFlow
@@ -39,19 +40,11 @@ router.post("/", (req, res) => {
     let newAdminID = 'admin_' + generateRandomString();
     let newSubmissionID = generateRandomString();
 
-    // Create an entry in the Database
+    // Create an entry in the Database using promises
     // need ask maryan to add name parameter
-    /*
-    db.createPoll(newUser.email, newUser.name, newAdminID, newSubmissionID)
-    .then((result)=>{
-      console.log("we are in the promise back after creating the poll ",result
+    createPoll(newUser.email, newUser.name, newAdminID, newSubmissionID);
 
-
-      res.redirect(`/polls/${newAdminID}`);
-    });
-    */
     res.redirect(`/polls/${newAdminID}`);
-
   }
 });
 
