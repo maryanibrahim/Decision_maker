@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-const db = require('../db/queries/users');
+const db = require('../db/queries/users.js');
 const router  = express.Router();
 
 function generateRandomString() {
@@ -16,13 +16,6 @@ function generateRandomString() {
 
 router.get('/', (req, res) => {
   res.render('users');
-});
-
-router.get("/", (req, res) => {
-  const templateVars = {
-    user: users[req.session.user_id]
-  };
-  res.render("users", templateVars);
 });
 
 router.post("/", (req, res) => {
@@ -41,9 +34,17 @@ router.post("/", (req, res) => {
 
     // Create an entry in the Database
     // need ask maryan to add name parameter
-    createPoll(newUser.email, newUser.name, newAdminID, newSubmissionID);
+    /*
+    db.createPoll(newUser.email, newUser.name, newAdminID, newSubmissionID)
+    .then((result)=>{
+      console.log("we are in the promise back after creating the poll ",result
 
+
+      res.redirect(`/polls/${newAdminID}`);
+    });
+    */
     res.redirect(`/polls/${newAdminID}`);
+
   }
 });
 

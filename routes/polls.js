@@ -4,7 +4,8 @@ const db = require('../db/connection');
 const Poll = require('../db/queries/pollModel')
 
 // VIKA ADJUSTMENT
-router.get("/polls/:id", (req, res) => {
+router.get("/:id", (req, res) => {
+  console.log('test')
   const pageID = req.params.id;
 
   // If given ID is admin
@@ -34,7 +35,5 @@ router.get("/polls/:id", (req, res) => {
     res.render("voter.ejs", templateVars);
   }
 });
-
-module.exports = router;
 
 module.exports = router;

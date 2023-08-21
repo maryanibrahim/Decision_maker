@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Users</title>
+  <title>polls</title>
 
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
@@ -18,9 +18,21 @@
 </head>
 
 <body>
-  <h1>polls</h1>
-  <button id="fetch-users">Fetch Users via AJAX</button>
-  <ul id="users"></ul>
+  <form class="" action="/" method="POST">
+    <div class="">
+      <label for="question-title">Create Your Poll:</label>
+      <input
+        class="form-control"
+        type="text"
+        name="choices"
+        placeholder=""
+        style="width: 300px; margin: 1em"
+      />
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+
+
 </body>
 
 </html>
