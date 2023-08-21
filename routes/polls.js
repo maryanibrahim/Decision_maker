@@ -8,7 +8,7 @@ function generateRandomUserId() {
   return Math.floor(Math.random() * 100000);
 }
 
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
 
     const title = req.body.title; // Get the title from the request body (assumes needs to change based on html)
@@ -22,6 +22,8 @@ router.post('/', async (req, res) => {
     res.status(500).send('An error occurred while creating the poll.');
   }
 });
+
+
 
 
 
