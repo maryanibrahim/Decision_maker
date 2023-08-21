@@ -37,7 +37,7 @@ router.post("/", (req, res) => {
     // need ask maryan to add name parameter
     Poll.create(newUser.email, newUser.name, newAdminID, newSubmissionID)
     .then((createdPoll) => {
-      res.redirect(`/polls/${createdPoll.newAdminID}`);
+      res.redirect(`/polls/${createdPoll.admin_id}`);
     })
     .catch((error) => {
       console.error('Error creating poll:', error);
