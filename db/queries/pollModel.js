@@ -1,19 +1,17 @@
-// pollModel.js
-
 const db = require('../connection');
 
 const Poll = {
   // the create method is used to create a new poll
-  create: async (user_id, title, admin_link, submission_link) => {
+  create: async (email, name, title, admin_link, submission_link) => {
     try {
       //query to insert into polls table
       const query = `
         INSERT INTO polls (user_id, title, admin_link, submission_link)
-        VALUES ($1, $2, $3, $4)
+        VALUES (DEFAULT, $1, $2, $3)
         RETURNING *;
       `;
       // values to be inserted into the query
-      const values = [user_id, title, admin_link, submission_link];
+      const values = [title, admin_link, submission_link];
 
       const { rows } = await db.query(query, values);
       return {
@@ -24,7 +22,6 @@ const Poll = {
       throw error;
     }
   },
-
 };
 
 module.exports = Poll;
