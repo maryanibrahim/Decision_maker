@@ -4,7 +4,8 @@ const db = require('../db/connection');
 const Poll = require('../db/queries/pollModel')
 
 
-router.get("/polls/:id", (req, res) => {
+router.get("/:id", (req, res) => {
+  console.log('test')
   const pageID = req.params.id;
 
   // If given ID is admin

@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-const db = require('../db/queries/users');
+const db = require('../db/queries/users.js');
 const router  = express.Router();
 const Poll = require('../db/queries/pollModel');
 
@@ -17,13 +17,6 @@ function generateRandomString() {
 
 router.get('/', (req, res) => {
   res.render('users');
-});
-
-router.get("/", (req, res) => {
-  const templateVars = {
-    user: users[req.session.user_id]
-  };
-  res.render("users", templateVars);
 });
 
 router.post("/", (req, res) => {
