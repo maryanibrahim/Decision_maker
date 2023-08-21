@@ -3,20 +3,28 @@ const router  = express.Router();
 const db = require('../db/connection');
 const Poll = require('../db/queries/pollModel')
 
-// Function to generate a random user ID
-function generateRandomUserId() {
-  return Math.floor(Math.random() * 100000);
-}
-router.get('/', (req, res) => {
-  res.render('index') // Polls to create on index page
-})
-router.post('/', async (req, res) => {
-  try {
+// VIKA ADJUSTMENT
+router.get("/polls/:id", (req, res) => {
+  const pageID = req.params.id;
 
-    const {email, name, question_title} = req.body; // Get the title from the request body
+  // If given ID is admin
+  if(pageID.startsWith('admin_')){
+    //check database if adminID exist
+    // if it exist put it in a variable
+    let databaseObject;
 
-    // Call the Poll's create method to create a new poll
-    const newPoll = await Poll.create(title);
+    const templateVars = {
+      email: databaseObject.email,
+      name: databaseObject.name,
+      question_title: databaseObject.question_title,
+      choices: databaseObject.choices
+    }
+    // Render the admin page ejs file with templateVars
+    res.render("admin.ejs", templateVars);
+  } else {  // Given id is submissionID
+    //check database if submissionID exist
+    // if it exist put it in a variable
+    let databaseObject;
 
     res.redirect('/polls', { poll: newPoll });
   } catch (error) {
@@ -24,7 +32,5 @@ router.post('/', async (req, res) => {
     res.status(500).send('An error occurred while creating the poll.');
   }
 });
-
-module.exports = router;
 
 module.exports = router;
