@@ -15,7 +15,7 @@ body {
 
 .header {
   align-self: center;
-  margin-top: 5em;
+  margin-top: 10em;
 }
 
 #below-header {
@@ -24,4 +24,25 @@ body {
 
 main {
   margin-left: 5em;
+}
+
+#questions-container {
+  margin-left: 5em;
+  margin-top: 2em;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.individual-question {
+  margin-left: 5em;
+  margin-bottom: 1em;
+}
+
+#button-container {
+  width: 100%;
+  align-self: center;
+
+  display: flex;
+  justify-content: space-around;
 }

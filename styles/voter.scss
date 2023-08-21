@@ -1,0 +1,39 @@
+main {
+  width: 75%;
+  align-self: center;
+  margin-left: 0em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#option_radio {
+  width: 100%;
+  display: flex;
+}
+
+ul {
+  list-style: none;
+}
+
+#option_list {
+  font-size: x-large;
+  height: 10em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#options{
+  width: 80%;
+
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.column {
+  display: flex;
+  justify-content: space-evenly;
+}
