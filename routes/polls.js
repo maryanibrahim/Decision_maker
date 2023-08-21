@@ -1,7 +1,7 @@
 const express = require("express");
 const router  = express.Router();
 const db = require('../db/connection');
-const Poll = require('../pollModel')
+const Poll = require('../db/queries/pollModel')
 
 // Function to generate a random user ID
 function generateRandomUserId() {
