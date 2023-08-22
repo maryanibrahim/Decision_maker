@@ -53,7 +53,7 @@ router.post("/", (req, res) => {
     })
     .catch((error) => {
       console.error('Error creating poll:', error);
-      res.status(500).send("An error occurred while creating the poll.");
+      res.status(500).send("An error occurred while creatigit ng the poll.");
     })
 
   }
