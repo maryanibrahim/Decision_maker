@@ -6,9 +6,9 @@
  */
 
 const express = require('express');
-const db = require('../db/queries/users.js');
 const router  = express.Router();
 const Poll = require('../db/queries/pollModel');
+const User = require('../db/queries/userModel');
 
 function generateRandomString() {
   // found the solution on stackOverFlow
@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
     name: req.body.name,
     question_title: req.body["question-title"]
   }
-  console.log("email:" + newUser.email);
+
   if (newUser.email === "" || newUser.name === "" || newUser.question_title === "") {
     return res.status(400).send("Please fill in all the fileds");
   } else {
@@ -34,17 +34,29 @@ router.post("/", (req, res) => {
     let newAdminID = 'admin_' + generateRandomString();
     let newSubmissionID = generateRandomString();
 
-    // Create an entry in the Database using promises
-    // need ask maryan to add name parameter
-    Poll.create(newUser.email, newUser.name, newUser.question_title, newAdminID, newSubmissionID)
-    .then((createdPoll) => {
-      console.log(createdPoll);
-      res.redirect(`/polls/${createdPoll.admin_id}`);
+    // Create the user data in Database
+    User.create(newUser.email, newUser.name)
+    .then((createdUser) => {
+      // Wait until db object returns
+      let userID = createdUser.id;
+
+      // Create the new poll in Database using userID from previous call
+      Poll.create(userID, newUser.question_title, newAdminID, newSubmissionID)
+      .then((createdPoll) => {
+        //Redirect user to the admin panel
+        res.redirect(`/polls/${createdPoll.admin_id}`);
+      })
+      .catch((error) => {
+        console.error('Error creating poll:', error);
+        res.status(500).send("An error occurred while creating the poll.");
+      })
     })
     .catch((error) => {
-      console.error('Error creating poll:', error);
-      res.status(500).send("An error occurred while creating the poll.");
+      console.error('Error creating User:', error);
+      res.status(500).send("An error occurred while creating the User.");
     })
+
+
   }
 });
 

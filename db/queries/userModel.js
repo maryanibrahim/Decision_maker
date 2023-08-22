@@ -1,17 +1,17 @@
 const db = require('../connection');
 
-const Poll = {
+const User = {
   // the create method is used to create a new poll
-  create: async (user_id, title, admin_link, submission_link) => {
+  create: async (email, name) => {
     try {
       //query to insert into polls table
       const query = `
-        INSERT INTO polls (id, user_id, title, admin_link, submission_link)
-        VALUES (DEFAULT, $1, $2, $3, $4)
+        INSERT INTO users (id, email, name)
+        VALUES (DEFAULT, $1, $2)
         RETURNING *;
       `;
       // values to be inserted into the query
-      const values = [user_id, title, admin_link, submission_link];
+      const values = [email, name];
 
       const { rows } = await db.query(query, values);
       return {
@@ -23,4 +23,4 @@ const Poll = {
   },
 };
 
-module.exports = Poll;
+module.exports = User;
