@@ -5,7 +5,6 @@ const Poll = require('../db/queries/pollModel')
 
 
 router.get("/:id", (req, res) => {
-  console.log('test')
   const pageID = req.params.id;
 
   // If given ID is admin
@@ -21,12 +20,16 @@ router.get("/:id", (req, res) => {
       choices: databaseObject.choices
     }
     // Render the admin page ejs file with templateVars
-    res.render("admin.ejs", templateVars);
-  } else {  // Given id is submissionID
-    //check database if submissionID exist
-    // if it exist put it in a variable
-    let databaseObject;
+    // res.render("adminPoll.ejs", templateVars);
+  } else {
+    /*
+    Poll.findAdminID(admin_id)
+    .then((databaseObjet) => {
+      res.render("poll.ejs", templateVars);
+    });
+    */
 
+    let databaseObject;
     const templateVars = {
       question_title: databaseObject.question_title,
       choices: databaseObject.choices

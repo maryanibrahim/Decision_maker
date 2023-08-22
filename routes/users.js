@@ -22,9 +22,9 @@ router.get('/', (req, res) => {
 
 router.post("/", (req, res) => {
   const newUser = {
-    email:req.body.email,
-    name:req.body.name,
-    question_title:req.body.question_title
+    email: req.body.email,
+    name: req.body.name,
+    question_title: req.body["question-title"]
   }
   console.log("email:" + newUser.email);
   if (newUser.email === "" || newUser.name === "" || newUser.question_title === "") {
@@ -36,9 +36,9 @@ router.post("/", (req, res) => {
 
     // Create an entry in the Database using promises
     // need ask maryan to add name parameter
-
-    Poll.create(newUser.email, newUser.name, newAdminID, newSubmissionID)
+    Poll.create(newUser.email, newUser.name, newUser.question_title, newAdminID, newSubmissionID)
     .then((createdPoll) => {
+      console.log(createdPoll);
       res.redirect(`/polls/${createdPoll.admin_id}`);
     })
     .catch((error) => {
