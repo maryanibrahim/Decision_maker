@@ -21,6 +21,25 @@ const Poll = {
       throw error;
     }
   },
+  findAdminID: async (admin_link) => {
+    try {
+      //query to insert into polls table
+      const query = `
+        SELECT *
+        FROM polls
+        WHERE admin_link = $1;
+      `;
+      // values to be inserted into the query
+      const values = [admin_link];
+
+      const { rows } = await db.query(query, values);
+      return {
+        ...rows[0], //Returning the newly created poll object
+      };
+    } catch (error) {
+      throw error;
+    }
+  }
 };
 
 module.exports = Poll;

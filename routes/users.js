@@ -44,7 +44,7 @@ router.post("/", (req, res) => {
       Poll.create(userID, newUser.question_title, newAdminID, newSubmissionID)
       .then((createdPoll) => {
         //Redirect user to the admin panel
-        res.redirect(`/polls/${createdPoll.admin_id}`);
+        res.redirect(`/polls/${createdPoll.admin_link}`);
       })
       .catch((error) => {
         console.error('Error creating poll:', error);

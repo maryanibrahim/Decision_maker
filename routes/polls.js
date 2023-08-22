@@ -9,9 +9,10 @@ router.get("/:id", (req, res) => {
 
   // If given ID is admin
   if(pageID.startsWith('admin_')){
-    //check database if adminID exist
-    // if it exist put it in a variable
-    let databaseObject;
+    Poll.findAdminID(pageID)
+    .then((returnedPoll) => {
+      res.render('polls')
+    })
 
     const templateVars = {
       email: databaseObject.email,
