@@ -19,6 +19,15 @@ router.get('/', (req, res) => {
   res.render('users');
 });
 
+
+router.get("/", (req, res) => {
+  const templateVars = {
+    user: users[req.session.user_id]
+  };
+  res.render("users", templateVars);
+});
+
+
 router.post("/", (req, res) => {
   const newUser = {
     email:req.body.email,
@@ -35,6 +44,13 @@ router.post("/", (req, res) => {
 
     // Create an entry in the Database using promises
     // need ask maryan to add name parameter
+
+
+    createPoll(newUser.email, newUser.name, newAdminID, newSubmissionID);
+
+    res.redirect(`/polls/${newAdminID}`);
+
+
     Poll.create(newUser.email, newUser.name, newAdminID, newSubmissionID)
     .then((createdPoll) => {
       res.redirect(`/polls/${createdPoll.admin_id}`);
@@ -43,7 +59,11 @@ router.post("/", (req, res) => {
       console.error('Error creating poll:', error);
       res.status(500).send("An error occurred while creating the poll.");
     })
+
+
   }
 });
 
-module.exports = router;
+
+
+
