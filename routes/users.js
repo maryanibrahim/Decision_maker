@@ -19,12 +19,14 @@ router.get('/', (req, res) => {
   res.render('users');
 });
 
+
 router.get("/", (req, res) => {
   const templateVars = {
     user: users[req.session.user_id]
   };
   res.render("users", templateVars);
 });
+
 
 router.post("/", (req, res) => {
   const newUser = {
@@ -43,9 +45,11 @@ router.post("/", (req, res) => {
     // Create an entry in the Database using promises
     // need ask maryan to add name parameter
 
+
     createPoll(newUser.email, newUser.name, newAdminID, newSubmissionID);
 
     res.redirect(`/polls/${newAdminID}`);
+
 
     Poll.create(newUser.email, newUser.name, newAdminID, newSubmissionID)
     .then((createdPoll) => {
@@ -56,8 +60,10 @@ router.post("/", (req, res) => {
       res.status(500).send("An error occurred while creatigit ng the poll.");
     })
 
+
   }
 });
+
 
 
 

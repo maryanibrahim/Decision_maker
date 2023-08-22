@@ -4,7 +4,8 @@ const db = require('../db/connection');
 const Poll = require('../db/queries/pollModel')
 
 
-router.get("/polls/:id", (req, res) => {
+router.get("/:id", (req, res) => {
+  console.log('test')
   const pageID = req.params.id;
 
   // If given ID is admin
@@ -26,10 +27,12 @@ router.get("/polls/:id", (req, res) => {
     // if it exist put it in a variable
     let databaseObject;
 
-    res.redirect('/polls', { poll: newPoll });
-  } catch (error) {
-    console.error('Error creating poll:', error);
-    res.status(500).send('An error occurred while creating the poll.');
+    const templateVars = {
+      question_title: databaseObject.question_title,
+      choices: databaseObject.choices
+    }
+    // Render the submission page ejs file with templateVars
+    res.render("voter.ejs", templateVars);
   }
 });
 
