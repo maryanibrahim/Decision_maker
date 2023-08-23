@@ -12,7 +12,8 @@ router.get("/:id", (req, res) => {
     Poll.findAdminID(pageID)
     .then((returnedPoll) => {
       const templateVars = {
-        question_title: returnedPoll.title,
+        adminID: returnedPoll.admin_link,
+        question_title: returnedPoll.title
       }
       // Render the admin page ejs file with templateVars
       res.render("polls", templateVars);
@@ -33,9 +34,21 @@ router.get("/:id", (req, res) => {
   }
 })
 
-router.post("/id", (req,res) => {
-  const title = rep.params.question_title
-  res.redirect("/polls");
+router.post("/:id", (req,res) => {
+  const pageID = req.params.id;
+  if(pageID.startsWith('admin_')){
+    Poll.findAdminID(pageID)
+    .then((returnedPoll) => {
+      const templateVars = {
+        question_title: returnedPoll.title,
+      }
+      // Render the admin page ejs file with templateVars
+      res.render("polls", templateVars);
+    })
+  } else {
+
+  }
+
 
 
 })
