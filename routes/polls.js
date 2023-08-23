@@ -33,7 +33,7 @@ router.get("/:id", (req, res) => {
       choices: databaseObject.choices
     }
     // Render the submission page ejs file with templateVars
-    res.render("voter.ejs", templateVars);
+    res.render("voter", templateVars);
   }
 });
 
