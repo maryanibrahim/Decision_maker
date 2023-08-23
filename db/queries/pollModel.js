@@ -2,21 +2,39 @@ const db = require('../connection');
 
 const Poll = {
   // the create method is used to create a new poll
-  create: async (email, name, title, admin_link, submission_link) => {
+  create: async (user_id, title, admin_link, submission_link) => {
     try {
       //query to insert into polls table
       const query = `
-        INSERT INTO polls (user_id, title, admin_link, submission_link)
-        VALUES (DEFAULT, $1, $2, $3)
+        INSERT INTO polls (id, user_id, title, admin_link, submission_link)
+        VALUES (DEFAULT, $1, $2, $3, $4)
         RETURNING *;
       `;
       // values to be inserted into the query
-      const values = [title, admin_link, submission_link];
+      const values = [user_id, title, admin_link, submission_link];
 
       const { rows } = await db.query(query, values);
       return {
         ...rows[0], //Returning the newly created poll object
-        newAdminID: admin_link //Adds the newAdminID property
+      };
+    } catch (error) {
+      throw error;
+    }
+  },
+  findAdminID: async (admin_link) => {
+    try {
+      //query to insert into polls table
+      const query = `
+        SELECT *
+        FROM polls
+        WHERE admin_link = $1;
+      `;
+      // values to be inserted into the query
+      const values = [admin_link];
+
+      const { rows } = await db.query(query, values);
+      return {
+        ...rows[0], //Returning the newly created poll object
       };
     } catch (error) {
       throw error;
@@ -64,8 +82,8 @@ const Poll = {
       throw error;
     }
   },
-   // Method to update vote count for a choice in the votes table
-   updateVoteForChoice: async (pollId, choiceId, voterName, rank) => {
+  // Method to update vote count for a choice in the votes table
+  updateVoteForChoice: async (pollId, choiceId, voterName, rank) => {
     try {
       const query = `
         INSERT INTO votes (poll_id, choice_id, voter_name, rank)
