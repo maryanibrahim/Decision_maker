@@ -40,6 +40,25 @@ const Poll = {
       throw error;
     }
   },
+  submissionID: async (submission_link) => {
+    try {
+      //query to insert into polls table
+      const query = `
+        SELECT *
+        FROM polls
+        WHERE submission_link = $1;
+      `;
+      // values to be inserted into the query
+      const values = [submission_link];
+
+      const { rows } = await db.query(query, values);
+      return {
+        ...rows[0], //Returning the newly created poll object
+      };
+    } catch (error) {
+      throw error;
+    }
+  },
 
   // Method to update vote count for a choice in the votes table
   updateVoteForChoice: async (pollId, choiceId, voterName, rank) => {

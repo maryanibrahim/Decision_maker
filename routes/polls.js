@@ -27,14 +27,17 @@ router.get("/:id", (req, res) => {
         question_title: databaseObject[question-title],
         choices: databaseObject.choices
       }
+          // Render the submission page ejs file with templateVars
       res.render("voter", templateVars);
     });
-
-
-
-    // Render the submission page ejs file with templateVars
-
   }
-});
+})
+
+router.post("/id", (req,res) => {
+  const title = rep.params.question_title
+  res.redirect("/polls");
+
+
+})
 
 module.exports = router;
