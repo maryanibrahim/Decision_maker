@@ -22,18 +22,18 @@ router.get("/:id", (req, res) => {
   } else {
 
     Poll.submissionID(pageID)
-    .then((databaseObjet) => {
-      res.render("voter", databaseObject);
+    .then((databaseObject) => {
+      const templateVars = {
+        question_title: databaseObject[question-title],
+        choices: databaseObject.choices
+      }
+      res.render("voter", templateVars);
     });
 
 
-    let databaseObject;
-    const templateVars = {
-      question_title: databaseObject[question-title],
-      choices: databaseObject.choices
-    }
+
     // Render the submission page ejs file with templateVars
-    res.render("voter", templateVars);
+
   }
 });
 
