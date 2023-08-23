@@ -24,15 +24,23 @@ router.post("/", (req, res) => {
   const newUser = {
     email: req.body.email,
     name: req.body.name,
-    question_title: req.body["question-title"]
+    question_title: req.body["question-title"],
+    option1: req.body.option1,
+    option2: req.body.option2,
+    option3: req.body.option3,
+    option4: req.body.option4
   }
 
   if (newUser.email === "" || newUser.name === "" || newUser.question_title === "") {
     return res.status(400).send("Please fill in all the fileds");
   } else {
     // Generate ID's for both admin page and normal page
-    let newAdminID = 'admin_' + generateRandomString();
+    let newAdminID = generateRandomString();
     let newSubmissionID = generateRandomString();
+
+    /*
+    SEND EMAIL to newUser.email with the Admin and Submission Links
+    */
 
     // Create the user data in Database
     User.create(newUser.email, newUser.name)
@@ -43,8 +51,17 @@ router.post("/", (req, res) => {
       // Create the new poll in Database using userID from previous call
       Poll.create(userID, newUser.question_title, newAdminID, newSubmissionID)
       .then((createdPoll) => {
-        //Redirect user to the admin panel
-        res.redirect(`/polls/${createdPoll.admin_link}`);
+        let pollID = createdPoll.id;
+        // Create the new Choices entry in Database using
+        Choices.create(pollID, /* no need title */ option1, option2, option3, option4 /*NO DESCRIPTION NEEDED*/)
+        .then((createdChoices) => {
+          res.status(500).send("Your Poll created succesfully! Please check your email for Admin Link and Submission Link.");
+        })
+        .catch((error) => {
+          console.error('Error creating Choices:', error);
+          res.status(500).send("An error occurred while creating the Choices.");
+        })
+
       })
       .catch((error) => {
         console.error('Error creating poll:', error);
