@@ -42,10 +42,16 @@ router.post("/:id", (req,res) => {
       const templateVars = {
         question_title: returnedPoll.title,
       }
+      const newPoll = {
+        choices_1:req.body["option1"]
+
+      }
       // Render the admin page ejs file with templateVars
       res.render("polls", templateVars);
     })
   } else {
+    console.error('Error fetching polls:', error);
+    res.status(500).json({ error: 'An error occurred while fetching polls.' });
 
   }
 
