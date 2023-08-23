@@ -52,6 +52,10 @@ app.get('/votes', (req, res) => {
   res.render('voter');
 })
 
+app.get('/stats', (req, res) => {
+  res.render('stats');
+})
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

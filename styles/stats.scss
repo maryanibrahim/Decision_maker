@@ -1,0 +1,15 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+#top {
+  margin-top: 10em;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+#top-rank {
+  align-self: center;
+}
