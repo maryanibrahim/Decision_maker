@@ -11,28 +11,25 @@ router.get("/:id", (req, res) => {
   if(pageID.startsWith('admin_')){
     Poll.findAdminID(pageID)
     .then((returnedPoll) => {
-      res.render('polls')
+      const templateVars = {
+        question_title: returnedPoll.title,
+      }
+      // Render the admin page ejs file with templateVars
+      res.render("polls", templateVars);
     })
 
-    const templateVars = {
-      email: databaseObject.email,
-      name: databaseObject.name,
-      question_title: databaseObject.question_title,
-      choices: databaseObject.choices
-    }
-    // Render the admin page ejs file with templateVars
-    // res.render("adminPoll.ejs", templateVars);
+
   } else {
-    /*
-    Poll.findAdminID(admin_id)
+
+    Poll.submissionID(pageID)
     .then((databaseObjet) => {
-      res.render("poll.ejs", templateVars);
+      res.render("voter", databaseObject);
     });
-    */
+
 
     let databaseObject;
     const templateVars = {
-      question_title: databaseObject.question_title,
+      question_title: databaseObject[question-title],
       choices: databaseObject.choices
     }
     // Render the submission page ejs file with templateVars
