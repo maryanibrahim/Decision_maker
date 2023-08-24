@@ -5,8 +5,8 @@ let sendEmail = function(subject, adminID, submissionID, email){
   var transporter = nodemailer.createTransport({
     service: 'yahoo',
     auth: {
-      user: 'viktoria.lhl@myyahoo.com',
-      pass: 'lhl.1216'
+      user: 'viktoria.lhl20@myyahoo.com',
+      pass: 'LHL.123123'
     }
   });
 
@@ -35,6 +35,7 @@ let sendEmail = function(subject, adminID, submissionID, email){
 module.exports = {
   sendEmail
 }
+
 
 
 
