@@ -27,6 +27,7 @@
       <h1>Name</h1>
     </div>
 
+
     <main>
       <p>Worst ==================================================================================== Best</p>
 
@@ -37,7 +38,8 @@
           <li>Option 3</li>
           <li>Option 4</li>
         </ul>
-        <form id="options" action="/votes" method="POST">
+        <form id="options" action="/votes/<%= submissionLink %>" method="POST">
+          <input type="hidden" name="submissionLink" value="<%= submissionLink %>">
           <div class="column">
             <input type="radio" name="option1" value="option1">
             <input type="radio" name="option2" value="option2">
