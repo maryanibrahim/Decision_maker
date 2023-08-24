@@ -30,7 +30,7 @@ app.use(express.static('public'));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require('./routes/users');
 const adminRoutes = require('./routes/admin');
-const voterRoutes = require('./routes/admin');
+const voterRoutes = require('./routes/votes');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own

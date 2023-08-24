@@ -74,6 +74,22 @@ const Poll = {
     } catch (error) {
       throw error;
     }
+  },
+  // Method to update vote count for a choice in the votes table
+  updateVoteForChoice: async (pollId, choiceId, voterName, rank) => {
+    try {
+      const query = `
+        INSERT INTO votes (poll_id, choice_id, voter_name, rank)
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (poll_id, choice_id, voter_name) DO UPDATE
+        SET rank = EXCLUDED.rank;
+      `;
+      const values = [pollId, choiceId, voterName, rank];
+
+      await db.query(query, values);
+    } catch (error) {
+      throw error;
+    }
   }
 
 };

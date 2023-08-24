@@ -40,7 +40,7 @@
           <li>Option 3</li>
           <li>Option 4</li>
         </ul>
-        <form id="options" action="/poll/<%=submissionID%>" method="GET">
+        <form id="options" action="/votes" method="POST">
           <div class="column">
             <input type="radio" name="option1" value="option1">
             <input type="radio" name="option2" value="option2">
@@ -64,20 +64,13 @@
             <input type="radio" name="option2" value="option2">
             <input type="radio" name="option3" value="option3">
             <input type="radio" name="option4" value="option4">
+          </div>
+
+
+          <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
-      </div>
-
-      <div id="results">
-        <h2>Results:</h2>
-        <ul>
-          <% for (const result of results) { %>
-            <li>
-              <%= result.choiceTitle %> - <%= result.score %> votes
-            </li> <!-- Display Borda Count results -->
-            <% } %>
-        </ul>
-      </div>
     </main>
   </body>
 
