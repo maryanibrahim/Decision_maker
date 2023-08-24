@@ -5,8 +5,8 @@ const Choices = {
   create: async (poll_id, option1, option1_description, option2, option2_description, option3, option3_description, option4, option4_description) => {
     try {
       const query = `
-        INSERT INTO choices (poll_id, option1, option1_description, option2, option2_description, option3, option3_description, option4, option4_description)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        INSERT INTO Choices (poll_id, option1, option1_description, option2, option2_description, option3, option3_description, option4, option4_description)
+        VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8)
         RETURNING *;
       `;
 
