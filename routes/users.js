@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 const Poll = require('../db/queries/pollModel');
 const User = require('../db/queries/userModel');
+const choices = require('../db/queries/choicesModel');
 
 function generateRandomString() {
   // found the solution on stackOverFlow
@@ -26,9 +27,13 @@ router.post("/", (req, res) => {
     name: req.body.name,
     question_title: req.body["question-title"],
     option1: req.body.option1,
+    option1_description: req.body.option1_description,
     option2: req.body.option2,
+    option2_description:req.body.option2_description,
     option3: req.body.option3,
-    option4: req.body.option4
+    option3_description: req.bodyoption3_description,
+    option4: req.body.option4,
+    option4_description: req.bodyoption4_description
   }
 
   if (newUser.email === "" || newUser.name === "" || newUser.question_title === "") {
@@ -50,9 +55,10 @@ router.post("/", (req, res) => {
       .then((createdPoll) => {
         let pollID = createdPoll.id;
         // Create the new Choices entry in Database using
-        Choices.create(pollID, option1, option2, option3, option4, option1_description, option2_description, option3_description,option4_description)
+        choices.create(pollID, newUser.option1, newUser.option1_description, newUser.option2, newUser.option2_description, newUser.option3, newUser.option3_description, newUser.option4, newUser.option4_description)
         .then((createdChoices) => {
-          res.status(500).send("Your Poll created succesfully! Please check your email for Admin Link and Submission Link.");
+
+          return res.status(200).send("Your Poll created succesfully! Please check your email for Admin Link and Submission Link.");
         })
         .catch((error) => {
           console.error('Error creating Choices:', error);
