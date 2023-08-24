@@ -6,7 +6,7 @@ let sendEmail = function(subject, adminID, submissionID, email){
     service: 'yahoo',
     auth: {
       user: 'viktoria.lhl@myyahoo.com',
-      pass: 'lhl.1216'
+      pass: 'lhl.123123'
     }
   });
 
@@ -35,6 +35,7 @@ let sendEmail = function(subject, adminID, submissionID, email){
 module.exports = {
   sendEmail
 }
+
 
 
 

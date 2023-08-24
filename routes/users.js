@@ -10,7 +10,7 @@ const router  = express.Router();
 const Poll = require('../db/queries/pollModel');
 const User = require('../db/queries/userModel');
 const choices = require('../db/queries/choicesModel');
-const sendEmail = require('./helper')
+const {sendEmail} = require('./helper')
 
 
 
