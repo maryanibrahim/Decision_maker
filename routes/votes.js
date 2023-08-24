@@ -6,7 +6,7 @@ const calculateBordaCount = require('../bordaCount');
 // GET route to display the voting form
 router.get('/votes', async (req, res) => {
   try {
-    const submissionId = req.query.submissionId; // Assuming the submission ID is passed as a query parameter
+    const submissionID = req.query.submissionId; // Assuming the submission ID is passed as a query parameter
 
     // Fetch poll details using the submission ID
     const poll = await Poll.submissionID(submissionId);
@@ -23,10 +23,10 @@ router.get('/votes', async (req, res) => {
 });
 
 // POST route to handle the submission of votes
-router.post('/votes', async (req, res) => {
+router.post('/votes/:submissionID', async (req, res) => {
   try {
-    const submissionId = req.body.submissionId; // Assuming you have a hidden input field with this name
-    const poll = await Poll.submissionID(submissionId);
+    const submissionID = req.params.submissionID;
+    const poll = await Poll.submissionID(submissionID);
 
     if (!poll) {
       return res.status(404).send('Poll not found');
@@ -40,7 +40,7 @@ router.post('/votes', async (req, res) => {
     }
 
     // render a success message
-    res.render("stats.ejs", 'Votes submitted successfully');
+    res.render("stats.ejs",{message:'Votes submitted successfully', pollData: poll});
   } catch (error) {
     console.error("Error submitting votes:", error);
     res.status(500).send("An error occurred while submitting votes.");
