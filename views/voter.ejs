@@ -4,18 +4,18 @@
 <head>
   <title>Voters View</title>
 
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- APP CSS-->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css"/>
-  <link rel="stylesheet" href="/styles/nav.css"/>
-  <link rel="stylesheet" href="/styles/form.css"/>
-  <link rel="stylesheet" href="/styles/voter.css"/>
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/nav.css" />
+  <link rel="stylesheet" href="/styles/form.css" />
+  <link rel="stylesheet" href="/styles/voter.css" />
 
 
   <script src="/vendor/jquery-3.0.0.js"></script>
@@ -23,50 +23,62 @@
 </head>
 
 <% include ./partials/_header %>
-<body>
-  <div class="header">
-    <h1>Poll Title</h1>
-    <h1>Name</h1>
-  </div>
 
-  <main>
-    <p>Worst ==================================================================================== Best</p>
-
-    <div id="option_radio">
-      <ul id="option_list">
-        <li>Option 1</li>
-        <li>Option 2</li>
-        <li>Option 3</li>
-        <li>Option 4</li>
-      </ul>
-      <form id="options" action="/poll/<%=submissionID%>" method="GET">
-        <div class="column">
-          <input type="radio" name="option1" value="option1">
-          <input type="radio" name="option2" value="option2">
-          <input type="radio" name="option3" value="option3">
-          <input type="radio" name="option4" value="option4">
-        </div>
-        <div class="column">
-          <input type="radio" name="option1" value="option1">
-          <input type="radio" name="option2" value="option2">
-          <input type="radio" name="option3" value="option3">
-          <input type="radio" name="option4" value="option4">
-        </div>
-        <div class="column">
-          <input type="radio" name="option1" value="option1">
-          <input type="radio" name="option2" value="option2">
-          <input type="radio" name="option3" value="option3">
-          <input type="radio" name="option4" value="option4">
-        </div>
-        <div class="column">
-          <input type="radio" name="option1" value="option1">
-          <input type="radio" name="option2" value="option2">
-          <input type="radio" name="option3" value="option3">
-          <input type="radio" name="option4" value="option4">
-        </div>
-      </form>
+  <body>
+    <div class="header">
+      <h1>Poll Title</h1>
+      <h1>Name</h1>
     </div>
-  </main>
-</body>
+
+    <main>
+      <p>Worst ==================================================================================== Best</p>
+
+      <div id="option_radio">
+        <ul id="option_list">
+          <li>Option 1</li>
+          <li>Option 2</li>
+          <li>Option 3</li>
+          <li>Option 4</li>
+        </ul>
+        <form id="options" action="/poll/<%=submissionID%>" method="GET">
+          <div class="column">
+            <input type="radio" name="option1" value="option1">
+            <input type="radio" name="option2" value="option2">
+            <input type="radio" name="option3" value="option3">
+            <input type="radio" name="option4" value="option4">
+          </div>
+          <div class="column">
+            <input type="radio" name="option1" value="option1">
+            <input type="radio" name="option2" value="option2">
+            <input type="radio" name="option3" value="option3">
+            <input type="radio" name="option4" value="option4">
+          </div>
+          <div class="column">
+            <input type="radio" name="option1" value="option1">
+            <input type="radio" name="option2" value="option2">
+            <input type="radio" name="option3" value="option3">
+            <input type="radio" name="option4" value="option4">
+          </div>
+          <div class="column">
+            <input type="radio" name="option1" value="option1">
+            <input type="radio" name="option2" value="option2">
+            <input type="radio" name="option3" value="option3">
+            <input type="radio" name="option4" value="option4">
+          </div>
+        </form>
+      </div>
+
+      <div id="results">
+        <h2>Results:</h2>
+        <ul>
+          <% for (const result of results) { %>
+            <li>
+              <%= result.choiceTitle %> - <%= result.score %> votes
+            </li> <!-- Display Borda Count results -->
+            <% } %>
+        </ul>
+      </div>
+    </main>
+  </body>
 
 </html>

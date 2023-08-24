@@ -60,22 +60,22 @@ const Poll = {
     }
   },
 
-  // Method to update vote count for a choice in the votes table
-  updateVoteForChoice: async (pollId, choiceId, voterName, rank) => {
+  getVotesForPoll: async (pollId) => {
     try {
       const query = `
-        INSERT INTO votes (poll_id, choice_id, voter_name, rank)
-        VALUES ($1, $2, $3, $4)
-        ON CONFLICT (poll_id, choice_id, voter_name) DO UPDATE
-        SET rank = EXCLUDED.rank;
+        SELECT choice_id, voter_name, rank
+        FROM votes
+        WHERE poll_id = $1;
       `;
-      const values = [pollId, choiceId, voterName, rank];
+      const values = [pollId];
 
-      await db.query(query, values);
+      const { rows } = await db.query(query, values);
+      return rows;
     } catch (error) {
       throw error;
     }
   }
+
 };
 
 module.exports = Poll;
