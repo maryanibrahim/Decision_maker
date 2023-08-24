@@ -37,23 +37,20 @@ router.post("/", (req, res) => {
     // Generate ID's for both admin page and normal page
     let newAdminID = generateRandomString();
     let newSubmissionID = generateRandomString();
-
     /*
     SEND EMAIL to newUser.email with the Admin and Submission Links
     */
-
     // Create the user data in Database
     User.create(newUser.email, newUser.name)
     .then((createdUser) => {
       // Wait until db object returns
       let userID = createdUser.id;
-
       // Create the new poll in Database using userID from previous call
       Poll.create(userID, newUser.question_title, newAdminID, newSubmissionID)
       .then((createdPoll) => {
         let pollID = createdPoll.id;
         // Create the new Choices entry in Database using
-        Choices.create(pollID, /* no need title */ option1, option2, option3, option4 /*NO DESCRIPTION NEEDED*/)
+        Choices.create(pollID, option1, option2, option3, option4, option1_description, option2_description, option3_description,option4_description)
         .then((createdChoices) => {
           res.status(500).send("Your Poll created succesfully! Please check your email for Admin Link and Submission Link.");
         })
@@ -63,17 +60,7 @@ router.post("/", (req, res) => {
         })
 
       })
-      .catch((error) => {
-        console.error('Error creating poll:', error);
-        res.status(500).send("An error occurred while creating the poll.");
-      })
     })
-    .catch((error) => {
-      console.error('Error creating User:', error);
-      res.status(500).send("An error occurred while creating the User.");
-    })
-
-
   }
 });
 
