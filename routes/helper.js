@@ -3,15 +3,15 @@ var nodemailer = require('nodemailer');
 
 let sendEmail = function(subject, adminID, submissionID, email){
   var transporter = nodemailer.createTransport({
-    service: 'yahoo',
+    service: 'Gmail',
     auth: {
-      user: 'viktoria.lhl20@myyahoo.com',
-      pass: 'LHL.123123'
+      user: 'vika.lhl20@gmail.com',
+      pass: 'rnnvcghsbbnqdxqg'
     }
   });
 
   var mailOptions = {
-    from: 'viktoria.lhl@myyahoo.com',
+    from: 'vika.lhl20@gmail.com',
     to: email,
     subject: subject,
     text: `Hey, \n` +
