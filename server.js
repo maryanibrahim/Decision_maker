@@ -37,6 +37,7 @@ const adminRoutes = require('./routes/admin');
 // app.use('/api/polls', pollsApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/admin', adminRoutes);
+app.use('/votes', voterRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
