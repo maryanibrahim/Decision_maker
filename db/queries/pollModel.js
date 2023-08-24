@@ -75,6 +75,24 @@ const Poll = {
       throw error;
     }
   },
+
+  //Fetch poll details using the submisson link
+  findSubmissionLink: async (submissionLink) => {
+    try {
+      const query = `
+        SELECT *
+        FROM polls
+        WHERE submission_link = $1;
+      `;
+      const values = [submissionLink];
+
+      const { rows } = await db.query(query, values);
+      return rows[0]; // Returning the poll object
+    } catch (error) {
+      throw error;
+    }
+  },
+
   // Method to update vote count for a choice in the votes table
   updateVoteForChoice: async (pollId, choiceId, voterName, rank) => {
     try {

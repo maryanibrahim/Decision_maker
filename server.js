@@ -51,14 +51,16 @@ app.get('/', (req, res) => {
 });
 
 app.get('/votes', (req, res) => {
-  res.render('voter');
+  let submissionLink = req.query.submission_link;
+res.render("voter.ejs", {submissionLink: submissionLink});
 })
 
 app.get('/stats', (req, res) => {
   res.render('stats');
 })
-app.post('/votes', async (req, res) => {
-  res.render('stats');
+app.post('/votes/:id', async (req, res) => {
+  let submissionLink = req.params.submission_link;
+  res.render("stats.ejs", { message: 'Votes submitted successfully'});
 })
 
 app.listen(PORT, () => {
