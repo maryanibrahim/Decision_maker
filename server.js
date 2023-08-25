@@ -5,7 +5,8 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
-
+const Poll = require('./db/queries/pollModel');
+const Choices = require('./db/queries/choicesModel');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -52,15 +53,35 @@ app.get('/', (req, res) => {
 
 app.get('/votes/:submissionID', (req, res) => {
   let submissionID = req.params.submissionID;
-res.render("voter.ejs", {submissionID: submissionID});
-})
+
+  Poll.findSubmissionLink(submissionID)
+    .then(async (returnedPoll) => {
+      // Fetch choices for the poll
+      const pollChoices = await Choices.getChoicesForPoll(returnedPoll.id);
+
+      const templateVars = {
+        question_title: returnedPoll.title,
+        submissionID: submissionID,
+        option1: pollChoices.option1,
+        option2: pollChoices.option2,
+        option3: pollChoices.option3,
+        option4: pollChoices.option4
+      }
+      res.render("voter.ejs", templateVars)
+    })
+});
 
 app.get('/stats', (req, res) => {
   res.render('stats');
 })
 app.post('/votes/:submissionID', async (req, res) => {
   let submissionLink = req.params.submissionID;
-  res.render("stats.ejs", { message: 'Votes submitted successfully'});
+  const responseMessage = `
+      Your vote has been submitted. Click <a href="/">here</a> to go back to the homepage.
+    `;
+
+  // Send the response message with the embedded link
+  res.send(responseMessage);
 })
 
 app.listen(PORT, () => {

@@ -23,8 +23,11 @@
 
   <body>
     <div class="header">
-      <h1>Poll Title</h1>
-      <h1>Name</h1>
+      <h1><%= question_title %></h1>
+      <h1>
+        <textarea id="voterName" name="voterName" rows="1" placeholder="Enter your Name" required></textarea>
+      </div>
+      </h1>
     </div>
 
 
@@ -33,10 +36,10 @@
 
       <div id="option_radio">
         <ul id="option_list">
-          <li>Option 1</li>
-          <li>Option 2</li>
-          <li>Option 3</li>
-          <li>Option 4</li>
+          <li><%= option1 %></li>
+          <li><%= option2 %></li>
+          <li><%= option3 %></li>
+          <li><%= option4 %></li>
         </ul>
 
         <form id="options" action="/votes/<%= submissionID %>" method="POST">
