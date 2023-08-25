@@ -39,6 +39,27 @@ const Choices = {
       throw error;
     }
   },
+  // Method to retrieve choices by poll_id and format them as an array
+  getChoicesForPoll: async (poll_id) => {
+    try {
+      const query = `
+        SELECT *
+        FROM choices
+        WHERE poll_id = $1;
+      `;
+      const values = [poll_id];
+
+      const { rows } = await db.query(query, values);
+      return [
+        rows[0].option1,
+        rows[0].option2,
+        rows[0].option3,
+        rows[0].option4
+      ];
+    } catch (error) {
+      throw error;
+    }
+  }
 };
 
 module.exports = Choices;
