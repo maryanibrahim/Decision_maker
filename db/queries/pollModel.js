@@ -108,8 +108,24 @@ const Poll = {
     } catch (error) {
       throw error;
     }
+  },
+  
+// Get results for a specific poll
+getPollResults: async (pollId) => {
+  try {
+    const query = `
+      SELECT * 
+      FROM choices
+      WHERE poll_id = $1;
+    `;
+    const values = [pollId];
+    const { rows } = await db.query(query, values);
+    return rows;
+  } catch (error) {
+    throw error;
   }
-
+}
 };
+
 
 module.exports = Poll;
