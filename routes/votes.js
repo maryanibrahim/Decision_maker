@@ -4,7 +4,7 @@ const Poll = require("../db/queries/pollModel");
 const calculateBordaCount = require('../bordaCount');
 
 // GET route to display the voting form from submission_link
-router.get('/votes/:id', async (req, res) => {
+router.get('/votes/', async (req, res) => {
   try {
     const submissionLink = req.query.submission_link; // submission_link is passed as a query parameter
     if (!submissionLink) {
