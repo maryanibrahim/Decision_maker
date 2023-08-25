@@ -21,6 +21,24 @@ const User = {
       throw error;
     }
   },
+// Method to find a user by their ID
+  findById: async (id) => {
+    try {
+      const query = `
+        SELECT *
+        FROM users
+        WHERE id = $1;
+      `;
+      const values = [id];
+
+      const { rows } = await db.query(query, values);
+      return {
+        ...rows[0], // Returning the user object with the specified ID
+      };
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 module.exports = User;
