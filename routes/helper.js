@@ -17,7 +17,7 @@ let sendEmail = function(subject, adminID, submissionID, email){
     text: `Hey, \n` +
           `Here is your Poll links:\n` +
           `   Admin Link: http://localhost:8080/poll/${adminID}` +
-          `   Submission Link: http://localhost:8080/votes/${submissionID}` +
+          `   Submission Link: http://localhost:8080/votes/${submissionID} \n`  +
           `Cheers`
   };
 
