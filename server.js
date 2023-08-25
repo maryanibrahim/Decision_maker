@@ -50,16 +50,16 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/votes', (req, res) => {
-  let submissionLink = req.query.submission_link;
-res.render("voter.ejs", {submissionLink: submissionLink});
+app.get('/votes/:submissionID', (req, res) => {
+  let submissionID = req.params.submissionID;
+res.render("voter.ejs", {submissionID: submissionID});
 })
 
 app.get('/stats', (req, res) => {
   res.render('stats');
 })
-app.post('/votes/:id', async (req, res) => {
-  let submissionLink = req.params.submission_link;
+app.post('/votes/:submissionID', async (req, res) => {
+  let submissionLink = req.params.submissionID;
   res.render("stats.ejs", { message: 'Votes submitted successfully'});
 })
 

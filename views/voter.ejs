@@ -38,8 +38,9 @@
           <li>Option 3</li>
           <li>Option 4</li>
         </ul>
-        <form id="options" action="/votes/<%= submissionLink%>" method="get">
-          <input type="hidden" name="submissionLink" value="<%= submissionLink %>">
+
+        <form id="options" action="/votes/<%= submissionID %>" method="POST">
+          <input type="hidden" name="submissionID" value="<%= submissionID %>">
           <div class="column">
             <input type="radio" name="option1" value="option1">
             <input type="radio" name="option2" value="option2">
