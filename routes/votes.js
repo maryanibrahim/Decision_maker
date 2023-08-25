@@ -4,9 +4,9 @@ const Poll = require("../db/queries/pollModel");
 const calculateBordaCount = require('../bordaCount');
 
 // GET route to display the voting form from submission_link
-router.get('/votes', async (req, res) => {
+router.get('/votes/:submissionID', async (req, res) => {
   try {
-    const submissionLink = req.query.submission_link; // submission_link is passed as a query parameter
+    const submissionLink = req.params.submissionID; // submission_link is passed as a query parameter
     if (!submissionLink) {
       return res.status(400).send('Submission link is missing');
     }
@@ -25,15 +25,16 @@ router.get('/votes', async (req, res) => {
 });
 
 // POST route to handle the submission of votes
-router.post('/votes/:id', async (req, res) => {
+router.post('/votes/:submissionID', async (req, res) => {
   try {
-    const submissionLink = req.params.submission_link;
+    const submissionLink = req.params.submissionID;
     const poll = await Poll.findSubmissionLink(submissionLink);
 
     if (!poll) {
       return res.status(404).send('Poll not found');
     }
-
+    // Retrieve submissionLink from the hidden input field
+    const submittedSubmissionLink = req.body.submissionID;
     const userRankings = calculateBordaCount(poll.choices, req.body); // Assuming req.body contains user's choices and rankings
 
     // Insert user rankings into the votes table
