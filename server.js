@@ -55,9 +55,14 @@ app.get('/votes', (req, res) => {
 res.render("voter.ejs", {submissionLink: submissionLink});
 })
 
+app.get('/polls', (req, res) => {
+  res.render('polls');
+})
+
 app.get('/stats', (req, res) => {
   res.render('stats');
 })
+
 app.post('/votes/:id', async (req, res) => {
   let submissionLink = req.params.submission_link;
   res.render("stats.ejs", { message: 'Votes submitted successfully'});

@@ -10,44 +10,63 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/nav.css"/>
   <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/form.css" />
+  <link rel="stylesheet" href="/styles/polls.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/polls.js"></script>
 </head>
 
+<% include ./partials/_header %>
 <body>
-  <form class="" action="/poll/<%= adminID %>" method="POST">
-    <h3><%= question_title %></h3> <!-- the number next to option will have to be changed depending on which one it is-->
-    <div class="individual-question">
-      <h4>Option 1</h4>
-      <input name="option1" class="option"> <!-- name will also have to be changed -->
-      <h4>Description (optional)</h4>
-      <input name="option1_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
-    </div>
-    <div class="individual-question">
-      <h4>Option 2</h4>
-      <input name="option1" class="option"> <!-- name will also have to be changed -->
-      <h4>Description (optional)</h4>
-      <input name="option1_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
-    </div>
-    <div class="individual-question">
-      <h4>Option 3</h4>
-      <input name="option1" class="option"> <!-- name will also have to be changed -->
-      <h4>Description (optional)</h4>
-      <input name="option1_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
-    </div>
+  <main>
+    <form class="" action="/poll" method="POST">
+      <h1>Question Title</h1>
+      <div id="option-container">
+        <div id="option1-2">
+          <div class="individual-option">
+            <h4>Option 1</h4>
+            <input name="option1" class="option"> <!-- name will also have to be changed -->
+            <h4 class="description">Description (optional)</h4>
+            <input name="option1_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
+          </div>
+          <div class="individual-option">
+            <h4>Option 2</h4>
+            <input name="option2" class="option"> <!-- name will also have to be changed -->
+            <h4 class="description">Description (optional)</h4>
+            <input name="option2_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
+          </div>
+        </div>
+        <div id="option3-4">
+          <div class="individual-option">
+            <h4>Option 3</h4>
+            <input name="option3" class="option"> <!-- name will also have to be changed -->
+            <h4 class="description">Description (optional)</h4>
+            <input name="option3_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
+          </div>
+          <div class="individual-option">
+            <h4>Option 4</h4>
+            <input name="option4" class="option"> <!-- name will also have to be changed -->
+            <h4 class="description">Description (optional)</h4>
+            <input name="option4_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
+          </div>
+        </div>
+      </div>
 
 
-  </section>
+    </section>
 
-  <div id="buttons">
-    <button id="submit-btn" class="btn" type="submit">Submit</button>
-  </div>
-  </form>
+    <div id="buttons">
+      <button id="submit-btn" class="btn" type="submit">Submit</button>
+    </div>
+    </form>
+  </main>
 
 
 </body>
 
 </html>
+
+

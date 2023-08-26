@@ -21,15 +21,17 @@
 
 <% include ./partials/_header %>
 
+
+
+<main>
   <body>
-    <div class="header">
+    <div id="header">
       <h1>Poll Title</h1>
-      <h1>Name</h1>
+      <div id="creator-name">
+        <p>By: name</p>
+      </div>
     </div>
-
-
-    <main>
-      <p>Worst ==================================================================================== Best</p>
+  <p id="judge-line">Worst ==================================================================================== Best</p>
 
       <div id="option_radio">
         <ul id="option_list">
@@ -40,33 +42,35 @@
         </ul>
         <form id="options" action="/votes/<%= submissionLink %>" method="POST">
           <input type="hidden" name="submissionLink" value="<%= submissionLink %>">
-          <div class="column">
-            <input type="radio" name="option1" value="option1">
-            <input type="radio" name="option2" value="option2">
-            <input type="radio" name="option3" value="option3">
-            <input type="radio" name="option4" value="option4">
-          </div>
-          <div class="column">
-            <input type="radio" name="option1" value="option1">
-            <input type="radio" name="option2" value="option2">
-            <input type="radio" name="option3" value="option3">
-            <input type="radio" name="option4" value="option4">
-          </div>
-          <div class="column">
-            <input type="radio" name="option1" value="option1">
-            <input type="radio" name="option2" value="option2">
-            <input type="radio" name="option3" value="option3">
-            <input type="radio" name="option4" value="option4">
-          </div>
-          <div class="column">
-            <input type="radio" name="option1" value="option1">
-            <input type="radio" name="option2" value="option2">
-            <input type="radio" name="option3" value="option3">
-            <input type="radio" name="option4" value="option4">
+          <div id="radio-btn">
+            <div class="column">
+              <input type="radio" name="option1" value="option1">
+              <input type="radio" name="option2" value="option2">
+              <input type="radio" name="option3" value="option3">
+              <input type="radio" name="option4" value="option4">
+            </div>
+            <div class="column">
+              <input type="radio" name="option1" value="option1">
+              <input type="radio" name="option2" value="option2">
+              <input type="radio" name="option3" value="option3">
+              <input type="radio" name="option4" value="option4">
+            </div>
+            <div class="column">
+              <input type="radio" name="option1" value="option1">
+              <input type="radio" name="option2" value="option2">
+              <input type="radio" name="option3" value="option3">
+              <input type="radio" name="option4" value="option4">
+            </div>
+            <div class="column">
+              <input type="radio" name="option1" value="option1">
+              <input type="radio" name="option2" value="option2">
+              <input type="radio" name="option3" value="option3">
+              <input type="radio" name="option4" value="option4">
+            </div>
           </div>
 
 
-          <div>
+          <div id="submit-btn">
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
