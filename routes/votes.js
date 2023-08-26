@@ -51,7 +51,6 @@ router.post('/votes/:submissionID', async (req, res) => {
     for (const ranking of userRankings) {
       await Poll.updateVoteForChoice(poll.id, ranking.choice_id, ranking.voter_name, ranking.rank);
     }
-    console.log('updateVoteForChoice');
     // render a success message
     res.send('Votes submitted successfully');
   } catch (error) {
