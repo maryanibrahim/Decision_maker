@@ -5,6 +5,9 @@ const Poll = require('../db/queries/pollModel');
 router.get("/:adminID", (req, res) => {
   try {
     const adminID = req.params.adminID;
+    if (!adminID) {
+      return res.status(400).send('Admin link is missing');
+    }
 
     // Retrieve poll information
     const returnedPoll = Poll.findAdminID(adminID);
