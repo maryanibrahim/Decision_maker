@@ -22,8 +22,8 @@
 <% include ./partials/_header %>
 <body>
   <main>
-    <form class="" action="/poll" method="POST">
-      <h1>Question Title</h1>
+    <form class="" action="/poll/<%= adminID %>" method="POST">
+      <h1><%= question_title %></h1>
       <div id="option-container">
         <div id="option1-2">
           <div class="individual-option">
@@ -62,6 +62,19 @@
       <button id="submit-btn" class="btn" type="submit">Submit</button>
     </div>
     </form>
+
+    <section id="poll-results">
+      <h2>Poll Results</h2>
+      <ul>
+        <% options.forEach((option, index) => { %>
+          <li>
+            Option <%= index + 1 %>: <%= option.option_text %>
+            (Votes: <%= option.vote_count %>)
+          </li>
+        <% }); %>
+      </ul>
+    </section>
+
   </main>
 
 
