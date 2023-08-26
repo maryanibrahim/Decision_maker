@@ -4,7 +4,7 @@ const Poll = require("../db/queries/pollModel");
 const calculateBordaCount = require('../bordaCount');
 const User = require('../db/queries/userModel');
 const Choices = require('../db/queries/choicesModel');
-const {sendSubmissionEmail} = require('./helper');
+const {sendEmail} = require('./helper');
 
 // GET route to display the voting form from submission_link
 router.get('/votes/:submissionID', async (req, res) => {
@@ -43,6 +43,7 @@ router.post('/votes/:submissionID', async (req, res) => {
     if (!poll) {
       return res.status(404).send('Poll not found');
     }
+
     // Retrieve submissionLink from the hidden input field
     const submittedSubmissionLink = req.body.submissionID;
     const userRankings = calculateBordaCount(poll.choices, req.body); // Assuming req.body contains user's choices and rankings
@@ -51,12 +52,7 @@ router.post('/votes/:submissionID', async (req, res) => {
     for (const ranking of userRankings) {
       await Poll.updateVoteForChoice(poll.id, ranking.choice_id, ranking.voter_name, ranking.rank);
     }
-    // Fetch the poll creator's email
-    const pollCreator = await User.findById(poll.user_id);
-    const pollCreatorEmail = pollCreator.email;
-
-     // Send submission email to poll creator
-     sendSubmissionEmail(submittedSubmissionLink, pollCreatorEmail);
+    console.log('updateVoteForChoice');
     // render a success message
     res.send('Votes submitted successfully');
   } catch (error) {

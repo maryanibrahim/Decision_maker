@@ -58,15 +58,20 @@ app.get('/votes/:submissionID', (req, res) => {
     .then(async (returnedPoll) => {
       // Fetch choices for the poll
       const pollChoices = await Choices.getChoicesForPoll(returnedPoll.id);
+      const jsonData = pollChoices[0];
+      const options = jsonData.slice(1, -1).replaceAll('"', '').split(",");
 
       const templateVars = {
         question_title: returnedPoll.title,
         submissionID: submissionID,
-        option1: pollChoices.option1,
-        option2: pollChoices.option2,
-        option3: pollChoices.option3,
-        option4: pollChoices.option4
+        option1: options[0],
+        option2: options[1],
+        option3: options[2],
+        option4: options[3]
       }
+      // console.log(pollChoices[0]);
+      // console.log(Array.from(pollChoices[0]));
+
       res.render("voter.ejs", templateVars)
     })
 });
