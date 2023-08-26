@@ -61,7 +61,6 @@ app.get('/votes/:submissionID', (req, res) => {
       const pollChoices = await Choices.getChoicesForPoll(returnedPoll.id);
       const jsonData = pollChoices[0];
       const options = jsonData.slice(1, -1).replaceAll('"', '').split(",");
-      console.log(pollChoices);
 
       const templateVars = {
         question_title: returnedPoll.title,
