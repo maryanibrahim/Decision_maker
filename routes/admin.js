@@ -18,7 +18,7 @@ router.get("/:adminID", (req, res) => {
       options: optionsWithCounts
     };
 
-    res.render("polls", templateVars);
+    res.render("stats", templateVars);
   } catch (error) {
     console.error("Error:", error);
     res.status(500).send("Internal Server Error");
