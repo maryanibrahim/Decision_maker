@@ -1,7 +1,12 @@
 #header {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
+}
+
+#voterName {
+  width: 15em;
+  text-align: center;
 }
 
 #creator-name {

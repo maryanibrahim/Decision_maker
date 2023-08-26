@@ -82,6 +82,11 @@ app.get('/polls', (req, res) => {
 app.get('/stats', (req, res) => {
   res.render('stats');
 })
+
+app.get('/votes', (req, res) => {
+  res.render('voter');
+})
+
 app.post('/votes/:submissionID', async (req, res) => {
   let submissionLink = req.params.submissionID;
   const responseMessage = `
