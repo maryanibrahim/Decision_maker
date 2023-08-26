@@ -56,7 +56,7 @@ app.get('/votes/:submissionID', (req, res) => {
 
   Poll.findSubmissionLink(submissionID)
     .then(async (returnedPoll) => {
-      console.log('Returned Poll:', returnedPoll);
+
       // Fetch choices for the poll
       const pollChoices = await Choices.getChoicesForPoll(returnedPoll.id);
       const jsonData = pollChoices[0];
