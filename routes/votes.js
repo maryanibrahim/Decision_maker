@@ -4,7 +4,6 @@ const Poll = require("../db/queries/pollModel");
 const calculateBordaCount = require('../bordaCount');
 const User = require('../db/queries/userModel');
 const Choices = require('../db/queries/choicesModel');
-const {sendEmail} = require('./helper');
 
 // GET route to display the voting form from submission_link
 router.get('/votes/:submissionID', async (req, res) => {

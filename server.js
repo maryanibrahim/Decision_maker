@@ -69,8 +69,6 @@ app.get('/votes/:submissionID', (req, res) => {
         option3: options[2],
         option4: options[3]
       }
-      // console.log(pollChoices[0]);
-      // console.log(Array.from(pollChoices[0]));
 
       res.render("voter.ejs", templateVars)
     })
