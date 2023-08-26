@@ -1,0 +1,32 @@
+#option-container {
+  padding: 1em;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#option1-2 {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 3em;
+}
+
+#option3-4 {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 3em;
+}
+
+.individual-option {
+  padding: 1em;
+  border: solid #022187;
+  border-radius: 25px;
+}
+
+h4 {
+  margin-top: 0em;
+}
+
+.description {
+  margin-top: 1em;
+}

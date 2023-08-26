@@ -75,6 +75,10 @@ app.get('/votes/:submissionID', (req, res) => {
     })
 });
 
+app.get('/polls', (req, res) => {
+  res.render('polls');
+})
+
 app.get('/stats', (req, res) => {
   res.render('stats');
 })

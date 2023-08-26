@@ -1,11 +1,16 @@
-main {
-  width: 75%;
-  align-self: center;
-  margin-left: 0em;
-
+#header {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
+}
+
+#creator-name {
+  place-self: start end;
+}
+
+#judge-line {
+  display: flex;
+  justify-content: center;
 }
 
 #option_radio {
@@ -33,7 +38,18 @@ ul {
   justify-content: space-evenly;
 }
 
-.column {
+#radio-btn {
   display: flex;
   justify-content: space-evenly;
+}
+
+.column {
+  height: 18em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#submit-btn {
+  place-self: end end;
 }

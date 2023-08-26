@@ -1,33 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>polls</title>
+
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/nav.css"/>
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/form.css" />
+  <link rel="stylesheet" href="/styles/polls.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/polls.js"></script>
+</head>
+
+<% include ./partials/_header %>
 <body>
-  <form action="/poll/<%= adminID %>" method="POST">
-      <h3><%= question_title %></h3>
-
-      <div class="individual-question">
-          <h4>Option 1</h4>
-          <input name="option1" class="option">
-          <h4>Description (optional)</h4>
-          <input name="option1_description" class="option_description">
+  <main>
+    <form class="" action="/poll/<%= adminID %>" method="POST">
+      <h1><%= question_title %></h1>
+      <div id="option-container">
+        <div id="option1-2">
+          <div class="individual-option">
+            <h4>Option 1</h4>
+            <input name="option1" class="option"> <!-- name will also have to be changed -->
+            <h4 class="description">Description (optional)</h4>
+            <input name="option1_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
+          </div>
+          <div class="individual-option">
+            <h4>Option 2</h4>
+            <input name="option2" class="option"> <!-- name will also have to be changed -->
+            <h4 class="description">Description (optional)</h4>
+            <input name="option2_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
+          </div>
+        </div>
+        <div id="option3-4">
+          <div class="individual-option">
+            <h4>Option 3</h4>
+            <input name="option3" class="option"> <!-- name will also have to be changed -->
+            <h4 class="description">Description (optional)</h4>
+            <input name="option3_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
+          </div>
+          <div class="individual-option">
+            <h4>Option 4</h4>
+            <input name="option4" class="option"> <!-- name will also have to be changed -->
+            <h4 class="description">Description (optional)</h4>
+            <input name="option4_description" class="option_description"> <!-- don't forget to check if description has been filled or is empty-->
+          </div>
+        </div>
       </div>
 
-      <div class="individual-question">
-          <h4>Option 2</h4>
-          <input name="option2" class="option">
-          <h4>Description (optional)</h4>
-          <input name="option2_description" class="option_description">
-      </div>
 
-      <div class="individual-question">
-          <h4>Option 3</h4>
-          <input name="option3" class="option">
-          <h4>Description (optional)</h4>
-          <input name="option3_description" class="option_description">
-      </div>
+    </section>
 
-      <!-- Submit button -->
-      <div id="buttons">
-          <button id="submit-btn" class="btn" type="submit">Submit</button>
-      </div>
-  </form>
+    <div id="buttons">
+      <button id="submit-btn" class="btn" type="submit">Submit</button>
+    </div>
+    </form>
+
+  </main>
 
   <!-- Poll results section -->
   <section id="poll-results">
@@ -45,3 +81,5 @@
 </body>
 
 </html>
+
+
