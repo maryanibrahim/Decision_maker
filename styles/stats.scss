@@ -1,15 +1,13 @@
-main {
-  display: flex;
-  flex-direction: column;
-}
-
-#top {
-  margin-top: 10em;
-
+#main-info {
+  padding: 5em;
+  width: 100%;
   display: flex;
   justify-content: space-around;
 }
 
-#top-rank {
-  align-self: center;
+#option-display {
+  padding: 10px;
+
+  display: flex;
+  justify-content: center;
 }
