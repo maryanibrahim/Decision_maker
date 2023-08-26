@@ -2,15 +2,15 @@ const express = require("express");
 const router = express.Router();
 const Poll = require('../db/queries/pollModel');
 
-router.get("/:id", async (req, res) => {
+router.get("/:adminID", (req, res) => {
   try {
-    const pageID = req.params.id;
-    
+    const adminID = req.params.adminID;
+
     // Retrieve poll information
-    const returnedPoll = await Poll.findAdminID(pageID);
-    
+    const returnedPoll = Poll.findAdminID(adminID);
+
     // Retrieve options with vote counts, ranked from best to worst
-    const optionsWithCounts = await Poll.getPollResults(pageID);
+    const optionsWithCounts = Poll.getPollResults(adminID);
 
     const templateVars = {
       adminID: returnedPoll.admin_link,
