@@ -10,7 +10,7 @@ const router  = express.Router();
 const Poll = require('../db/queries/pollModel');
 const User = require('../db/queries/userModel');
 const choices = require('../db/queries/choicesModel');
-const {sendEmail} = require('./helper')
+const {sendEmail} = require('../public/scripts/helper')
 
 
 
@@ -58,6 +58,7 @@ router.post("/", (req, res) => {
         // Create the new Choices entry in Database using
         choices.create(pollID, newUser.option1, newUser.option1_description, newUser.option2, newUser.option2_description, newUser.option3, newUser.option3_description, newUser.option4, newUser.option4_description)
         .then((createdChoices) => {
+          console.log(createdChoices)
           sendEmail("Here is your Poll links!", newAdminID, newSubmissionID,newUser.email )
 
           return res.status(200).send("Your Poll created succesfully! Please check your email for Admin Link and Submission Link.");

@@ -1,22 +1,28 @@
 const express = require("express");
-const router  = express.Router();
-const db = require('../db/connection');
-const Poll = require('../db/queries/pollModel')
+const router = express.Router();
+const Poll = require('../db/queries/pollModel');
 
+router.get("/:adminID", (req, res) => {
+  try {
+    const adminID = req.params.adminID;
 
-router.get("/:id", (req, res) => {
-    Poll.findAdminID(pageID)
-    .then((returnedPoll) => {
+    // Retrieve poll information
+    const returnedPoll = Poll.findAdminID(adminID);
 
-      // TO-DO: get all info ffrom DB for results
+    // Retrieve options with vote counts, ranked from best to worst
+    const optionsWithCounts = Poll.getPollResults(adminID);
 
-      const templateVars = {
-        adminID: returnedPoll.admin_link,
-        question_title: returnedPoll.title
-      }
-      // Render the admin page ejs file with templateVars
-      res.render("polls", templateVars);
-    })
+    const templateVars = {
+      adminID: returnedPoll.admin_link,
+      question_title: returnedPoll.title,
+      options: optionsWithCounts
+    };
+
+    res.render("polls", templateVars);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 module.exports = router;
