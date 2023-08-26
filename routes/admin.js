@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Poll = require('../db/queries/pollModel');
+const Choices = require("../db/queries/choicesModel");
 
 router.get("/:adminID", (req, res) => {
   try {
@@ -27,5 +28,21 @@ router.get("/:adminID", (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+
+
+// router.post('/stats/:adminID', (req, res) => {
+//   try {
+//     const adminLink = req.params.adminID;
+//     const results =  Poll.getPollResults(Choices);
+
+//   }
+//   catch (error) {
+//     console.error("Error ", error);
+//     res.status(500).send("An error occurred.");
+//   }
+// })
+
+
 
 module.exports = router;
